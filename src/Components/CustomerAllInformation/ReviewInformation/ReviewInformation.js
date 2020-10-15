@@ -15,7 +15,7 @@ const ReviewInformation = () => {
     const { register, handleSubmit, watch, errors } = useForm();
     const onSubmit = (data, e) => {
         const customerReviewData = {...data}
-        fetch("http://localhost:5000/customerReview", {
+        fetch("https://rocky-badlands-31326.herokuapp.com/customerReview", {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(customerReviewData)

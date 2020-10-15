@@ -8,7 +8,7 @@ const ClientsReview = () => {
     const [findCustomerReview, setFindCustomerReview] = useState([]);
 
     useEffect(()=>{
-        fetch("http://localhost:5000/getCustomerReview")
+        fetch("https://rocky-badlands-31326.herokuapp.com/getCustomerReview")
         .then(res=>res.json())
         .then(data => setFindCustomerReview(data))
     }, [])

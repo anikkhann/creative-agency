@@ -14,7 +14,7 @@ const MakeAdmin = () => {
     const { register, handleSubmit, watch, errors } = useForm();
     const onSubmit = (data, e) => {
         const makeAdminEmail = {...data}
-        fetch("http://localhost:5000/addEmail", {
+        fetch("https://rocky-badlands-31326.herokuapp.com/addEmail", {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(makeAdminEmail)

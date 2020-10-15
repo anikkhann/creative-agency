@@ -14,7 +14,7 @@ const AdminAddService = () => {
     const { register, handleSubmit, watch, errors } = useForm();
     const onSubmit = (data, e) => {
         const adminAddService = {...data}
-        fetch("http://localhost:5000/addService", {
+        fetch("https://rocky-badlands-31326.herokuapp.com/addService", {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(adminAddService)

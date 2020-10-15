@@ -18,7 +18,7 @@ const OrderInformation = () => {
     const onSubmit = (data, e) => {
        
         const customerOrder = {...data}
-        fetch("http://localhost:5000/customerOrder", {
+        fetch("https://rocky-badlands-31326.herokuapp.com/customerOrder", {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(customerOrder)

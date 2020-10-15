@@ -12,7 +12,7 @@ const AdminServiceList = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [allCustomerOrder, setAllCustomerOrder] = useState([])
     useEffect(() =>{
-        fetch("http://localhost:5000/getAllCustomerOrder")
+        fetch("https://rocky-badlands-31326.herokuapp.com/getAllCustomerOrder")
         .then(res => res.json())
         .then(data => setAllCustomerOrder(data))
     }, [])

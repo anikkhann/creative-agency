@@ -6,7 +6,7 @@ const PrivateRoute = ({ children, ...rest }) => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [adminEmail, setAdminEmail] = useState([]);
     useEffect(()=>{
-        fetch("http://localhost:5000/getAddEmail?email="+loggedInUser.email)
+        fetch("https://rocky-badlands-31326.herokuapp.com/getAddEmail?email="+loggedInUser.email)
         .then(res=>res.json())
         .then(data => setAdminEmail(data))
     }, [])
