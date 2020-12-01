@@ -4,12 +4,27 @@ import logo from '../../../logos/logo.png';
 import fakeData from '../../../fakeData/index';
 import ServiceListInformation from '../ServiceListInformation/ServiceListInformation';
 import { UserContext } from '../../../App';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartPlus, faCoffee, faClipboardList,faCommentDots } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartPlus, faCoffee, faClipboardList,faCommentDots } from '@fortawesome/free-solid-svg-icons';
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import { Button } from 'react-bootstrap';
 
 const ServiceList = () => {
-
+    //sign out
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const handleSignOut = () => {
+        firebase.auth().signOut().then(function () {
+            const logOut = {
+                name: " ",
+                email: " "
+            }
+            setLoggedInUser(logOut);
+        })
+            .catch(function (error) {
+                // An error happened.
+            });
+    }
     const [orderService, setOrderService] = useState([]);
     useEffect(()=>{
         fetch("https://rocky-badlands-31326.herokuapp.com/getCustomerOrder?email="+loggedInUser.email)
@@ -46,6 +61,9 @@ const ServiceList = () => {
                         <NavLink className="sidebar" activeClassName='text-primary' to="/review">
                         <FontAwesomeIcon icon={faCommentDots} /> Review
                         </NavLink>
+                        <Link to ="/">
+                                <Button onClick={handleSignOut} style={{ marginLeft: '20px', width: '100px', height: '40px', borderRadius: '10px' }} variant="dark">Logout</Button>
+                        </Link> 
                       {/* <Link to="/admin">  */}
                        {/* <NavLink className="sidebar" activeClassName='text-primary'> */}
                             {/* <button style={{width:'150px' , height:'40px' , fontSize:'16px' , background:'#111430' ,color:'#FFFFFF' , borderRadius:'10px' , marginTop :'20px'}} className='btn'> Admin Panel </button>   */}

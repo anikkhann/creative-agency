@@ -6,10 +6,27 @@ import fakeData from '../../../fakeData/index3';
 import { UserContext } from '../../../App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserPlus, faPlus, faClipboardList } from '@fortawesome/free-solid-svg-icons';
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import { Button } from 'react-bootstrap';
 
 
 const AdminServiceList = () => {
+    //sign out
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    const handleSignOut = () => {
+        firebase.auth().signOut().then(function () {
+            const logOut = {
+                name: " ",
+                email: " "
+            }
+            setLoggedInUser(logOut);
+        })
+            .catch(function (error) {
+                // An error happened.
+            });
+    }
+
     const [allCustomerOrder, setAllCustomerOrder] = useState([])
     useEffect(() =>{
         fetch("https://rocky-badlands-31326.herokuapp.com/getAllCustomerOrder")
@@ -46,6 +63,9 @@ const AdminServiceList = () => {
                         <NavLink activeClassName='text-primary' to="/adminMakeAdmin" className="sidebar">
                         <FontAwesomeIcon icon={faUserPlus} />  Make Admin
                         </NavLink>
+                        <Link to ="/">
+                                <Button onClick={handleSignOut} style={{ marginLeft: '20px', width: '100px', height: '40px', borderRadius: '10px' }} variant="dark">Logout</Button>
+                        </Link> 
                     </div>
                 </div>
                 
